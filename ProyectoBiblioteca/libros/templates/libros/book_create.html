@@ -1,0 +1,29 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+  <h2>Crear libro / recurso</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ book_form.as_p }}
+    <p>
+      {{ files_form.files.label_tag }}<br>
+      {{ files_form.files }}
+    </p>
+
+    {% if file_errors %}
+      <div class="errors">
+        <strong>Errores con archivos:</strong>
+        <ul>
+          {% for e in file_errors %}
+            <li>{{ e }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if book_form.non_field_errors %}
+      <div class="errors">{{ book_form.non_field_errors }}</div>
+    {% endif %}
+
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}

@@ -1,4 +1,8 @@
 from django.db import models
+import os
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
 
 # Create your models here.
 class Libro(models.Model):
@@ -17,3 +21,10 @@ class Documento(models.Model):
 
     def __str__(self):
         return self.archivo.name
+
+
+@receiver(post_delete, sender=Documento)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    if instance.file:
+        if os.path.isfile(instance.file.path):
+            os.remove(instance.file.path)

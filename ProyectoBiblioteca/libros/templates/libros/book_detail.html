@@ -1,0 +1,17 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+  <h2>{{ book.title }}</h2>
+  <p>{{ book.description }}</p>
+
+  <h3>Documentos</h3>
+  <ul>
+    {% for doc in book.documents.all %}
+      <li>
+        <a href="{{ doc.file.url }}" target="_blank">{{ doc.file.name|slice:"10:" }}</a>
+        (subido: {{ doc.uploaded_at }})
+      </li>
+    {% empty %}
+      <li>No hay documentos</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

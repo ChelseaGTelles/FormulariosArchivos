@@ -17,7 +17,7 @@ def is_allowed_file(f):
 
 def book_list(request):
     books = Libro.objects.all().order_by('-created_at')
-    return render(request, 'books/book_list.html', {'books': books})
+    return render(request, 'libros/book_list.html', {'books': books})
 
 def book_create(request):
     if request.method == 'POST':
@@ -44,13 +44,13 @@ def book_create(request):
                 'files_form': files_form,
                 'file_errors': file_errors
             }
-            return render(request, 'books/book_create.html', context)
+            return render(request, 'libros/book_create.html', context)
 
     else:
         book_form = BookForm()
         files_form = MultiFileForm()
-    return render(request, 'books/book_create.html', {'book_form': book_form, 'files_form': files_form})
+    return render(request, 'libros/book_create.html', {'book_form': book_form, 'files_form': files_form})
 
 def book_detail(request, pk):
     book = get_object_or_404(Libro, pk=pk)
-    return render(request, 'books/book_detail.html', {'book': book})
+    return render(request, 'libros/book_detail.html', {'book': book})

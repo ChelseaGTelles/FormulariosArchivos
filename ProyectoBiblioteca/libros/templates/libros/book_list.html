@@ -1,0 +1,11 @@
+{% extends 'libros/base.html' %}
+{% block content %}
+  <h2>Libros</h2>
+  <ul>
+    {% for b in books %}
+      <li><a href="{% url 'book_detail' b.pk %}">{{ b.title }}</a> — {{ b.author }}</li>
+    {% empty %}
+      <li>No hay libros</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
