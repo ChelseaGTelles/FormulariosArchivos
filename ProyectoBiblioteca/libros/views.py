@@ -16,8 +16,8 @@ def is_allowed_file(f):
     return False
 
 def book_list(request):
-    books = Libro.objects.all().order_by('-created_at')
-    return render(request, 'libros/book_list.html', {'books': books})
+    libros = Libro.objects.all().order_by('-creado_en')
+    return render(request, 'libros/book_list.html', {'libros': libros})
 
 def book_create(request):
     if request.method == 'POST':
@@ -34,7 +34,8 @@ def book_create(request):
         if book_form.is_valid() and not file_errors:
             book = book_form.save()
             for f in files:
-                Documento.objects.create(book=book, file=f)
+                Documento.objects.create(libro=book, archivo=f)
+
             messages.success(request, "Libro y archivos guardados correctamente.")
             return redirect('book_list')
         else:

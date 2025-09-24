@@ -2,8 +2,8 @@
 {% block content %}
   <h2>Libros</h2>
   <ul>
-    {% for b in books %}
-      <li><a href="{% url 'book_detail' b.pk %}">{{ b.title }}</a> — {{ b.author }}</li>
+    {% for b in libros %}
+      <li><a href="{% url 'book_detail' b.pk %}">{{ b.titulo }}</a> — {{ b.autor }}</li>
     {% empty %}
       <li>No hay libros</li>
     {% endfor %}
