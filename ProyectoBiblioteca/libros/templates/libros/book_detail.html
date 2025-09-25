@@ -9,13 +9,12 @@
   {% if documentos %}
     <ul>
       {% for doc in documentos %}
-        <li>
-          <a href="{{ doc.archivo.url }}" target="_blank">
-  {{ doc.archivo.name|slice:"-20:" }}  
-</a>
+<li>
+    <a href="{{ doc.archivo.url }}" target="_blank">{{ doc.archivo.name|slice:"-20:" }}</a>
+    <a href="{% url 'document_delete' doc.pk %}" onclick="return confirm('¿Seguro que quieres borrar este archivo?');">Eliminar</a>
+</li>
+{% endfor %}
 
-        </li>
-      {% endfor %}
     </ul>
   {% else %}
     <p>No hay archivos para este libro.</p>

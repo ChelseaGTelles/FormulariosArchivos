@@ -1,0 +1,37 @@
+{% extends 'libros/base.html' %}
+
+{% block content %}
+<h2>Editar libro</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ book_form.as_p }}
+
+    <label for="archivos">Agregar archivos:</label>
+    <input type="file" name="files" multiple>
+
+    <button type="submit">Guardar cambios</button>
+</form>
+
+{% if file_errors %}
+<div class="errors">
+    <ul>
+        {% for e in file_errors %}
+            <li>{{ e }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<h3>Archivos existentes</h3>
+<ul>
+    {% for doc in libro.documents.all %}
+        <li>
+            <a href="{{ doc.archivo.url }}" target="_blank">{{ doc.archivo.name|slice:"-25:" }}</a>
+            <a href="{% url 'document_delete' doc.pk %}" onclick="return confirm('¿Eliminar este archivo?');">Eliminar</a>
+        </li>
+    {% empty %}
+        <li>No hay archivos.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

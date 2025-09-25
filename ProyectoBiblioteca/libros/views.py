@@ -5,6 +5,43 @@ from .models import Libro, Documento
 
 ALLOWED_MIMES = ('application/pdf', 'application/x-pdf', 'application/octet-stream')
 
+def document_delete(request, pk):
+    doc = get_object_or_404(Documento, pk=pk)
+    libro_pk = doc.libro.pk
+    doc.delete()
+    messages.success(request, "Documento eliminado correctamente.")
+    return redirect('book_detail', pk=libro_pk)
+
+def is_allowed_file(f):
+    return f.content_type in ALLOWED_MIMES or f.content_type.startswith('image/')
+
+def book_edit(request, pk):
+    libro = get_object_or_404(Libro, pk=pk)
+    file_errors = []
+
+    if request.method == 'POST':
+        book_form = BookForm(request.POST, instance=libro)
+        files = request.FILES.getlist('files')
+
+        for f in files:
+            if not is_allowed_file(f):
+                file_errors.append(f"{f.name} no es PDF ni imagen (MIME: {f.content_type})")
+
+        if book_form.is_valid() and not file_errors:
+            book_form.save()
+            for f in files:
+                Documento.objects.create(libro=libro, archivo=f)
+            messages.success(request, "Libro actualizado correctamente.")
+            return redirect('book_list')
+    else:
+        book_form = BookForm(instance=libro)
+
+    return render(request, 'libros/book_edit.html', {
+        'book_form': book_form,
+        'file_errors': file_errors,
+        'libro': libro
+    })
+
 
 def book_delete(request, pk):
     libro = get_object_or_404(Libro, pk=pk)
