@@ -3,7 +3,22 @@
   <h2>Libros</h2>
   <ul>
     {% for b in libros %}
-      <li><a href="{% url 'book_detail' b.pk %}">{{ b.titulo }}</a> — {{ b.autor }}</li>
+      <li>
+        <a href="{% url 'book_detail' b.pk %}">{{ b.titulo }}</a> — {{ b.autor }}
+        {% if b.documents.all %}
+          <ul>
+            {% for doc in b.documents.all %}
+              <li>
+                <a href="{{ doc.archivo.url }}" target="_blank">
+                  {{ doc.archivo.name|slice:"-25:" }}  {# muestra el final del nombre #}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <em>(sin archivos)</em>
+        {% endif %}
+      </li>
     {% empty %}
       <li>No hay libros</li>
     {% endfor %}

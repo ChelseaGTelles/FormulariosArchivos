@@ -7,7 +7,7 @@ class BookForm(forms.ModelForm):
         fields = ['titulo', 'autor', 'sinopsis']
 
 class MultiFileInput(forms.ClearableFileInput):
-    allow_multiple_selected = True  # habilita múltiples archivos
+    allow_multiple_selected = True  
 
 class MultiFileForm(forms.Form):
     files = forms.FileField(
