@@ -28,3 +28,4 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     if instance.archivo:
         if os.path.isfile(instance.archivo.path):
             os.remove(instance.archivo.path)
+

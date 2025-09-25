@@ -1,17 +1,23 @@
 {% extends 'libros/base.html' %}
-{% block content %}
-  <h2>{{ book.title }}</h2>
-  <p>{{ book.description }}</p>
 
-  <h3>Documentos</h3>
-  <ul>
-    {% for doc in book.documents.all %}
-      <li>
-        <a href="{{ doc.file.url }}" target="_blank">{{ doc.file.name|slice:"10:" }}</a>
-        (subido: {{ doc.uploaded_at }})
-      </li>
-    {% empty %}
-      <li>No hay documentos</li>
-    {% endfor %}
-  </ul>
+{% block content %}
+  <h2>{{ book.titulo }}</h2>
+  <p><strong>Autor:</strong> {{ book.autor }}</p>
+  <p><strong>Sinopsis:</strong> {{ book.sinopsis }}</p>
+
+  <h3>Archivos:</h3>
+  {% if documentos %}
+    <ul>
+      {% for doc in documentos %}
+        <li>
+          <a href="{{ doc.archivo.url }}" target="_blank">
+  {{ doc.archivo.name|slice:"-20:" }}  <!-- solo un ejemplo, corta los últimos 20 caracteres -->
+</a>
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay archivos para este libro.</p>
+  {% endif %}
 {% endblock %}
