@@ -54,16 +54,22 @@ header {
     width: 95%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin: 20px auto;       
+    text-align: center;
 }
 
 .libros-table th, .libros-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+    border: 1px solid black; 
+    padding: 8px;            
+    text-align: center;       
+    vertical-align: middle;   
 }
 
 .libros-table th {
-    background-color: #f2f2f2;
+    background-color:#d8ab17; 
+    color: white;             
+    font-weight: bold; 
+    font-size: 20px;
 }
 
 .libros-table tr:nth-child(even) {
@@ -71,87 +77,35 @@ header {
 }
 
 .libros-table a {
-    color: #007bff;
+    color: black;
     text-decoration: none;
 }
 
-.libros-table a:hover {
-    text-decoration: underline;
+.libros-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-.libros-table {
-    width: 95%;
-    border-collapse: collapse; /* elimina espacios entre bordes */
-    margin: 20px auto;         /* centra la tabla horizontalmente */
-    text-align: center;         /* centra el texto dentro de las celdas */
-}
-
-.libros-table th,
-.libros-table td {
-    border: 1px solid #ccc;   /* bordes opcionales */
-    padding: 10px;            /* espacio interno */
-    text-align: center;        /* centra contenido de cada celda */
-    vertical-align: middle;    /* centra verticalmente */
-}
-
-.edit-icon {
-    color: rgb(88, 37, 61);
-    font-size: 18px; /* tamaño del icono */
-    text-decoration: none; /* quitar subrayado si es un enlace */
-    margin-right: 10px; /* espacio entre iconos */
-}
-
-.delete-icon {
-    color: red;
-    font-size: 18px;
-    text-decoration: none;
+.libros-table tbody tr:hover {
+    background-color: #ddd;
 }
 
 .edit-icon i {
     color: #d6620f;
-    font-size: 18px; /* tamaño del icono */
+    font-size: 18px;
+    text-decoration: none; 
+    margin-right: 10px; 
 }
 
 .delete-icon i {
     color: #bd2130;
     font-size: 18px;
+    text-decoration: none;
 }
 
-
-/* Estilos generales de la tabla */
-.libros-table {
-    width: 95%;
-    border-collapse: collapse; /* Une bordes */
-    margin: 20px auto;         /* Centra la tabla */
-    text-align: center;        /* Centra el texto dentro de celdas */
-}
-
-/* Bordes de todas las celdas */
-.libros-table th,
-.libros-table td {
-    border: 1px solid black;  /* Línea negra alrededor de celdas */
-    padding: 8px;             /* Espaciado interno */
-}
-
-/* Encabezado de la tabla */
-.libros-table th {
-    background-color:#d8ab17; /*#af744c; Color de fondo */
-    color: white;               /* Color de texto */
-    font-weight: bold; 
-    font-size: 20px;          /* Texto en negrita */
-}
 .primer{
     font-weight: bold;
-}/* Filas alternadas (opcional) */
-.libros-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    color: black;
 }
-
-/* Cambio de color al pasar el mouse (hover) */
-.libros-table tbody tr:hover {
-    background-color: #ddd;
-}
-
 
 /* Formulario */
 form {
@@ -196,8 +150,6 @@ form button[type="submit"]:hover {
     background-color: #d8ab17;
 }
 
-
-/* Estilo de errores */
 .errors {
     background-color: #ffe6e6;
     color: #a33;
@@ -207,71 +159,67 @@ form button[type="submit"]:hover {
     margin-bottom: 20px;
 }
 
-
-/* Contenedor de archivos existentes */
 h3 {
     text-align: center;
     margin-top: 30px;
     margin-bottom: 15px;
     font-size: 20px;
+    font-weight: bold;
     color: #333;
 }
 
 ul {
-    list-style: none; /* quitar viñetas */
+    list-style: none; 
     padding: 0;
     max-width: 500px;
-    margin: 0 auto 40px auto; /* centrado */
+    margin: 0 auto 40px auto; 
 }
 
 ul li {
-    background-color: #f0f0f0; /* fondo suave */
+    background-color: #f0f0f0; 
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px 15px;
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between; /* separar nombre y acción */
+    justify-content: space-between; 
     align-items: center;
-    font-family: Arial, sans-serif;
     transition: background-color 0.2s ease;
 }
 
 ul li:hover {
-    background-color: #e0e0e0; /* efecto hover */
+    background-color: #e0e0e0; 
 }
 
 ul li a {
     text-decoration: none;
-    color: #bd2130; /* color para links de archivos */
+    color: #bd2130; 
     margin-left: 10px;
     font-weight: bold;
     transition: color 0.2s ease;
 }
 
 ul li a:hover {
-    color: #d8ab17; /* hover más oscuro */
+    color: #d8ab17; 
 }
 
 ul li a:last-child {
-    color: red; /* botón eliminar */
+    color: #bd2130;
 }
 
 ul li a:last-child:hover {
-    color: darkred;
+    color: #d8ab17;
 }
 
-
 .book-link {
-    text-decoration: none; /* quitar subrayado */
+    text-decoration: none; 
     color: black;         
 }
 
 .book-link:hover {
-    color:  #bd2130; /* cambia de color al pasar el mouse */
+    color:  #bd2130; 
     cursor: pointer;
 }
-
 
 .book-detail-card {
     max-width: 700px;
@@ -316,26 +264,5 @@ ul li a:last-child:hover {
 }
 
 .document-link:hover {
-    color: #007BFF;
-}
-
-.delete-icon {
-    color: red;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-.delete-icon:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-
-.primer{
-    color: black;
-}
-
-.libros-table a {
-    color: black;
-    text-decoration: none;
+    color: #d8ab17;
 }
