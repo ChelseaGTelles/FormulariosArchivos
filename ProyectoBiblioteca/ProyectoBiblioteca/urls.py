@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('libros.urls')),  # así la app estará en la raíz
+    path('', include('libros.urls')),  
 ]
 
 if settings.DEBUG:
