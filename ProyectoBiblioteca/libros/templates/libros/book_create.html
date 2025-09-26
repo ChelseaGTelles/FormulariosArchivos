@@ -1,7 +1,11 @@
 {% extends 'libros/base.html' %}
 
 {% block content %}
-  <h2>Crear libro / recurso</h2>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <div class="pagina">Crear Libro - Añade Portada o PDF</div>
+
   <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   
@@ -11,7 +15,7 @@
   <input type="file" name="files" multiple>
   
   <button type="submit">Guardar</button>
-</form>
+  </form>
 
 {% if file_errors %}
   <div class="errors">

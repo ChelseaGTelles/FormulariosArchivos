@@ -1,22 +1,33 @@
 {% extends 'libros/base.html' %}
 
 {% block content %}
-  <h2>{{ libro.titulo }}</h2>
-  <p><strong>Autor:</strong> {{ libro.autor }}</p>
-  <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <h3>Archivos:</h3>
-  {% if documentos %}
-    <ul>
-      {% for doc in documentos %}
-<li>
-    <a href="{{ doc.archivo.url }}" target="_blank">{{ doc.archivo.name|slice:"-20:" }}</a>
-    <a href="{% url 'document_delete' doc.pk %}" onclick="return confirm('¿Seguro que quieres borrar este archivo?');">Eliminar</a>
-</li>
-{% endfor %}
+<div class="pagina">Detalles del Libro</div>
 
-    </ul>
-  {% else %}
-    <p>No hay archivos para este libro.</p>
-  {% endif %}
+<div class="book-detail-card">
+    <h2 class="book-title">{{ libro.titulo }}</h2>
+    <p><strong>Autor:</strong> {{ libro.autor }}</p>
+    <p><strong>Sinopsis:</strong> {{ libro.sinopsis }}</p>
+
+    <h3>Archivos:</h3>
+    {% if documentos %}
+        <ul class="document-list">
+            {% for doc in documentos %}
+            <li>
+                <a href="{{ doc.archivo.url }}" target="_blank" class="document-link">
+                    <i class="fa-solid fa-file"></i> {{ doc.archivo.name }}
+                </a>
+                <a href="{% url 'document_delete' doc.pk %}" class="delete-icon" onclick="return confirm('¿Seguro que quieres borrar este archivo?');">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay archivos para este libro.</p>
+    {% endif %}
+</div>
 {% endblock %}

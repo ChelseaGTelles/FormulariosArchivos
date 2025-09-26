@@ -10,7 +10,7 @@ def document_delete(request, pk):
     libro_pk = doc.libro.pk
     doc.delete()
     messages.success(request, "Documento eliminado correctamente.")
-    return redirect('book_detail', pk=libro_pk)
+    return redirect('book_edit', pk=libro_pk)
 
 def is_allowed_file(f):
     return f.content_type in ALLOWED_MIMES or f.content_type.startswith('image/')
@@ -25,7 +25,9 @@ def book_edit(request, pk):
 
         for f in files:
             if not is_allowed_file(f):
-                file_errors.append(f"{f.name} no es PDF ni imagen (MIME: {f.content_type})")
+                #file_errors.append(f"{f.name} no es PDF ni imagen (MIME: {f.content_type})")
+                file_errors.append("El archivo que intentas subir no es PDF ni un formato de imagen.")
+
 
         if book_form.is_valid() and not file_errors:
             book_form.save()
@@ -77,7 +79,8 @@ def book_create(request):
         for f in files:
             print(f"Archivo recibido: {f.name}, tipo: {f.content_type}")
             if not is_allowed_file(f):
-                file_errors.append(f"{f.name} no es PDF ni imagen (MIME: {f.content_type})")
+                file_errors.append("El archivo que intentas subir no es PDF ni un formato de imagen.")
+
 
         if book_form.is_valid() and not file_errors:
             libro = book_form.save()

@@ -3,9 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>Biblioteca</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-  <header><h1>Biblioteca digital</h1><nav><a href="{% url 'book_list' %}">Listado</a> | <a href="{% url 'book_create' %}">Crear</a></nav></header>
+  <header>
+  <h1>Biblioteca digital</h1>
+  <nav class="menu">
+    <a href="{% url 'book_list' %}" class="menu-item">Listado</a>
+    <a href="{% url 'book_create' %}" class="menu-item">Crear</a>
+  </nav>
+  </header>
+
   <main>
     {% if messages %}
       <ul class="messages">

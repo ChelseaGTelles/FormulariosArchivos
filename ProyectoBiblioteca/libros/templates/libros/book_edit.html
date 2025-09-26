@@ -1,7 +1,10 @@
 {% extends 'libros/base.html' %}
 
 {% block content %}
-<h2>Editar libro</h2>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <div class="pagina">Editar Libro</div>
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -27,7 +30,7 @@
 <ul>
     {% for doc in libro.documents.all %}
         <li>
-            <a href="{{ doc.archivo.url }}" target="_blank">{{ doc.archivo.name|slice:"-25:" }}</a>
+            <a href="{{ doc.archivo.url }}" target="_blank">{{ doc.archivo.name }}</a>
             <a href="{% url 'document_delete' doc.pk %}" onclick="return confirm('¿Eliminar este archivo?');">Eliminar</a>
         </li>
     {% empty %}
